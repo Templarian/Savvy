@@ -1,6 +1,6 @@
 # Savvy
 
-JavaScript markup parser for the Savvy syntax.
+JavaScript markup parser for the Savvy syntax. Play with the [Demo](http://jsfiddle.net/97Yrj/)
 
 - Jasmine Unit Tested
 - jQuery or jqLite (for use with Angular)
