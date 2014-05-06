@@ -294,7 +294,7 @@
                     var template = data.template;
                     for (var i = 0, c = args.length; i < c; i++) {
                         var regex = new RegExp('(\{@' + data.parameters[i] + '\}|@' + data.parameters[i] + ')', 'g');
-                        template = template.replace(regex, args[i]);
+                        template = template.replace(regex, savvy.getData(args[i].substr(1)) || args[i]);
                     }
                     try {
                         var match = template.match(/^([^<]*)([\s\S]*?)([^>]*)$/);
