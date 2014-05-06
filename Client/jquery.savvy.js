@@ -304,6 +304,9 @@
                     } catch (e) { element.append('[Syntax Error: Invalid Template]'); }
                 } else {
                     if (name in $.savvy.fn) {
+                        for (var j = 0; j < args.length; j++) {
+                            args[j] = savvy.getData(args[j].substr(1)) || args[j].substr(1);
+                        }
                         $.savvy.fn[name].apply(element, args);
                     } else {
                         element.append('[Syntax Error: Function "' + name + '" is not set]');
