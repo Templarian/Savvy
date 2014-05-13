@@ -121,7 +121,6 @@
                         list[list.length - 1][0].append('[Syntax Error: ' + m[i] + ']');
                     }
                 }
-                //return true;
             }],
             [/^\n?(?:(?:&gt;|>)+.*(?:\n?|$))+/, function (element, text) {
                 var old = text.split(/\n/), lines = [];
@@ -395,7 +394,7 @@
         return (m[0].charCodeAt(0) - 96) + (m[0].length - 1) * 26;
     };
     $.savvy.Lexer = function (element, data) {
-        /// <summary></summary>
+        /// <summary>Step over text.</summary>
         this.element = element;
         this.data = data;
         this.index = 0;
