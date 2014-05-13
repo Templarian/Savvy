@@ -121,7 +121,7 @@
                         list[list.length - 1][0].append('[Syntax Error: ' + m[i] + ']');
                     }
                 }
-                return true;
+                //return true;
             }],
             [/^\n?(?:(?:&gt;|>)+.*(?:\n?|$))+/, function (element, text) {
                 var old = text.split(/\n/), lines = [];
