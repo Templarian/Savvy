@@ -15,10 +15,8 @@
             if (typeof args[0] == 'string') {
                 $.savvy(this, args[0]);
             }
-            return this.filter("a").append(function () {
-                return " (" + this.href + ")";
-            });
         }
+        return this;
     };
     $.savvy = function (element, text) {
         /// <summary>Perform</summary>
@@ -122,7 +120,7 @@
                     }
                 }
             }],
-            [/^\n?(?:(?:&gt;|>)+.*(?:\n?|$))+/, function (element, text) {
+            [/^\n?\n?(?:(?:&gt;|>)+.*(?:\n?|$))+/, function (element, text) {
                 var old = text.split(/\n/), lines = [];
                 for (var i = 0; i < old.length; i++) {
                     if (old[i] === '') { continue; }
@@ -145,7 +143,7 @@
                                       .replace(/&amp;/g, '&')
                 });
             }],
-            [/^\n?(\@\@?\w+\s+[^\n]*)/, function (element, text) {
+            [/^\n?(\@\@?\w+\s+[^\n]*)\n?/, function (element, text) {
                 var variable = text.match(/^(@@?)([^\s]+)\s+(.*)$/);
                 if (typeof element.data(variable[2]) == 'undefined' || variable[1].length == 2) {
                     savvy.setData(variable[2], variable[3]);
@@ -304,7 +302,7 @@
                 } else {
                     if (name in $.savvy.fn) {
                         for (var j = 0; j < args.length; j++) {
-                            args[j] = savvy.getData(args[j].substr(1)) || args[j].substr(1);
+                            args[j] = savvy.getData(args[j].substr(1)) || args[j];
                         }
                         $.savvy.fn[name].apply(element, args);
                     } else {
