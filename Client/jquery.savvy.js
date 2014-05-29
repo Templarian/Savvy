@@ -184,29 +184,15 @@
             [/^\\-/, function (element, text) {
                 element.append('-');
             }],
-            [/^\*/, function (element, text) {
+            [/^\B\*((?:[^\*]|\B\*\B|\\\*)+)\*\B/, function (element, text) {
                 var $strong = $('<strong>');
-                lexerText.step([
-                    [/^\*/, function (element, text) {
-                        element.append($strong);
-                        return true;
-                    }],
-                    [/^(?:\\\*|[^\*])+/, function (element, text) {
-                        return $.savvy.stepText(savvy, $strong, text);
-                    }]
-                ]);
+                $.savvy.stepText(savvy, $strong, text);
+                element.append($strong);
             }],
-            [/^_/, function (element, text) {
+            [/^\b_((?:[^_]|\B_\B|\\_)+)_\b/, function (element, text) {
                 var $italic = $('<em>');
-                lexerText.step([
-                    [/^_/, function (element, text) {
-                        element.append($italic);
-                        return true;
-                    }],
-                    [/^(?:\\_|[^_])+/, function (element, text) {
-                        return $.savvy.stepText(savvy, $italic, text);
-                    }]
-                ]);
+                $.savvy.stepText(savvy, $italic, text);
+                element.append($italic);
             }],
             [/^`/, function (element, text) {
                 var $code = $('<code>');
@@ -237,41 +223,17 @@
                 $a.attr('href', m[2]);
                 element.append($a);
             }],
-            [/^\^/, function (element, text) {
+            [/^\B\^\b((?:[^\^]|\\\^)+)\b\^\B/, function (element, text) {
                 var $sup = $('<sup>');
-                lexerText.step([
-                    [/^\^/, function (element, text) {
-                        element.append($sup);
-                        return true;
-                    }],
-                    [/^(?:\\\^|[^\^])+/, function (element, text) {
-                        return $.savvy.stepText(savvy, $sup, text);
-                    }]
-                ]);
+                return $.savvy.stepText(savvy, $sup, text);
             }],
-            [/^~/, function (element, text) {
+            [/^\B~\b((?:[^~]|\\~)+)\b~\B/, function (element, text) {
                 var $sub = $('<sub>');
-                lexerText.step([
-                    [/^~/, function (element, text) {
-                        element.append($sub);
-                        return true;
-                    }],
-                    [/^(?:\\~|[^~])+/, function (element, text) {
-                        return $.savvy.stepText(savvy, $sub, text);
-                    }]
-                ]);
+                return $.savvy.stepText(savvy, $sub, text);
             }],
-            [/^\-/, function (element, text) {
-                var $strike = $('<del>');
-                lexerText.step([
-                    [/^-/, function (element, text) {
-                        element.append($strike);
-                        return true;
-                    }],
-                    [/^(?:\\-|[^-])+/, function (element, text) {
-                        return $.savvy.stepText(savvy, $strike, text);
-                    }]
-                ]);
+            [/^\B-\b((?:[^-]|\\-)+)\b-\B/, function (element, text) {
+                var $del = $('<del>');
+                return $.savvy.stepText(savvy, $del, text);
             }],
             [/^@\w+\([^\)]*\)/, function (element, text) {
                 var m = text.match(/@(\w+)\(([^\)]*)\)/),
