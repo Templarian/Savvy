@@ -223,17 +223,20 @@
                 $a.attr('href', m[2]);
                 element.append($a);
             }],
-            [/^\B\^\b((?:[^\^]|\\\^)+)\b\^\B/, function (element, text) {
+            [/^\^((?:[^\^]|\\\^)+)\^/, function (element, text) {
                 var $sup = $('<sup>');
-                return $.savvy.stepText(savvy, $sup, text);
+                $.savvy.stepText(savvy, $sup, text);
+                element.append($sup);
             }],
-            [/^\B~\b((?:[^~]|\\~)+)\b~\B/, function (element, text) {
+            [/^~((?:[^~]|\\~)+)~/, function (element, text) {
                 var $sub = $('<sub>');
-                return $.savvy.stepText(savvy, $sub, text);
+                $.savvy.stepText(savvy, $sub, text);
+                element.append($sub);
             }],
-            [/^\B-\b((?:[^-]|\\-)+)\b-\B/, function (element, text) {
+            [/^\B-((?:[^-]|\b-\b|\\-)+)-\B/, function (element, text) {
                 var $del = $('<del>');
-                return $.savvy.stepText(savvy, $del, text);
+                $.savvy.stepText(savvy, $del, text);
+                element.append($del);
             }],
             [/^@\w+\([^\)]*\)/, function (element, text) {
                 var m = text.match(/@(\w+)\(([^\)]*)\)/),
