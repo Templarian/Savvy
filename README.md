@@ -26,7 +26,7 @@ exmaple here
 
 ## Savvy Syntax
 
-The parser allows for inline variable definitions and functions.
+The parser allows for inline variable definitions and functions. View the full syntax [documention](http://templarian.com/project_savvy_syntax).
 
 ### Variables
 
