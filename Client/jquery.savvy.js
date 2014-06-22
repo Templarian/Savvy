@@ -400,13 +400,13 @@
                 error: o.failure || function () { }
             });
         } else {
-            angular.injector(['ng']).invoke(function ($http) {
+            angular.injector(['ng']).invoke(['$http', function ($http) {
                 $http({
                     method: o.type || 'GET',
                     url: o.url
                 }).success(o.success)
                   .error(o.failure || function () { });
-            });
+            }]);
         }
     };
     $.savvy.fn = {};
